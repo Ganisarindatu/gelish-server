@@ -146,7 +146,7 @@ export const unenrollCourse = TryCatch(async (req, res) => {
 
 
 
-//Untuk Progress yooo semangat abis skripsi nnti kita kembangin 
+//Untuk Progress yooo semangat abis skripsi nnti kita kembangin Gan
 
 // export const addProgress = TryCatch(async (req, res) => {
 //     const progress = await Progress.findOne({

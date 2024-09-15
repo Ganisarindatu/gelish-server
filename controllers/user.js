@@ -11,7 +11,7 @@ export const register = TryCatch(async (req, res) => {
 
   if (user)
     return res.status(400).json({
-      message: "Pengguna dengan email ini sudah terdaftar",
+      message: "The user with this email is already registered",
     });
 
   const hashPassword = await bcrypt.hash(password, 10);
@@ -41,7 +41,7 @@ export const register = TryCatch(async (req, res) => {
   await sendMail(email, "Gelish", data);
 
   res.status(200).json({
-    message: "OTP telah dikirim ke emailmu",
+    message: "OTP has been sent to your email",
     activationToken,
   });
 });
@@ -53,12 +53,12 @@ export const verifyUser = TryCatch(async (req, res) => {
 
   if (!verify)
     return res.status(400).json({
-      message: "OTP Kadaluarsa",
+      message: "Expired OTP",
     });
 
   if (verify.otp !== otp)
     return res.status(400).json({
-      message: "OTP Salah",
+      message: "Wrong OTP",
     });
 
   await User.create({
@@ -68,7 +68,7 @@ export const verifyUser = TryCatch(async (req, res) => {
   });
 
   res.json({
-    message: "Pendaftaran berhasil",
+    message: "Registration successful",
   });
 });
 
@@ -78,14 +78,14 @@ export const loginUser = TryCatch(async (req, res) => {
   const user = await User.findOne({ email });
   if (!user)
     return res.status(400).json({
-      message: "Tidak ada User dengan Email ini",
+      message: "There are no users with this email",
     });
 
   const mathPassword = await bcrypt.compare(password, user.password);
 
   if (!mathPassword)
     return res.status(400).json({
-      message: "Password salah",
+      message: "Wrong Password",
     });
 
   const token = jwt.sign({ _id: user._id }, process.env.Jwt_Sec, {
@@ -93,7 +93,7 @@ export const loginUser = TryCatch(async (req, res) => {
   });
 
   res.json({
-    message: `Selamat datang kembali ${user.name}`,
+    message: `Welcome back ${user.name}`,
     token,
     user,
   });
