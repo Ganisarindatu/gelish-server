@@ -141,4 +141,3 @@ export const createCourse = TryCatch(async (req, res) => {
       });
     }
   });
-  

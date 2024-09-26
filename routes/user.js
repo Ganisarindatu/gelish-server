@@ -20,5 +20,5 @@ router.get("/user/me", isAuth, myProfile);
 router.post("/user/forgot", forgotPassword);
 router.post("/user/reset", resetPassword);
 // router.post("/user/progress", isAuth, addProgress);
-// router.get("/user/progress", isAuth, getYourProgress);
+// router.get("/user/progress", isAuth, getYourProgress); nanti di kembangin 
 export default router;
